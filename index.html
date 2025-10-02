@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zenith Tasks | Your Personal Task Manager</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+     
+
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-layer-group"></i>
+                <h1> Zenith Tasks</h1>
+            </div>
+            <button class="add-task-btn" id="addTaskBtn">
+                <i class="fa-solid fa-plus"></i> Add New Task
+            </button>
+
+            <div class="sidebar-section">
+                <h3>Filters</h3>
+                <ul class="filters">
+                    <li class="active" data-filter="all"><i class="fa-solid fa-inbox"></i> All Tasks</li>
+                    <li data-filter="pending"><i class="fa-regular fa-hourglass-half"></i> Pending</li>
+                    <li data-filter="completed"><i class="fa-regular fa-circle-check"></i> Completed</li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Categories</h3>
+                <ul class="categories">
+                    <li class="active" data-category="all"><i class="fa-solid fa-tags"></i> All</li>
+                    <li data-category="work"><i class="fa-solid fa-briefcase"></i> Work</li>
+                    <li data-category="personal"><i class="fa-solid fa-user"></i> Personal</li>
+                    <li data-category="shopping"><i class="fa-solid fa-cart-shopping"></i> Shopping</li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                <div class="header-text">
+                    <h2>Hello, User! 👋</h2>
+                    <p>You have <span id="task-count">0</span> pending tasks.</p>
+                </div>
+                <div class="sort-options">
+                    <label for="sort-by">Sort by:</label>
+                    <select id="sort-by">
+                        <option value="date">Due Date</option>
+                        <option value="priority">Priority</option>
+                    </select>
+                </div>
+            </header>
+
+            <div class="task-list-container" id="task-list">
+                </div>
+        </main>
+    </div>
+
+    <div class="modal-overlay" id="taskModal">
+        <div class="modal-content">
+            <form id="taskForm">
+                <h2 id="modalTitle">Add New Task</h2>
+                <input type="hidden" id="taskId">
+                <div class="form-group">
+                    <label for="taskTitle">Task Title</label>
+                    <input type="text" id="taskTitle" placeholder="e.g., Finish project proposal" required>
+                </div>
+                <div class="form-group">
+                    <label for="taskDueDate">Deadline</label>
+                    <input type="date" id="taskDueDate" required>
+                </div>
+                <div class="form-group-inline">
+                    <div class="form-group">
+                        <label for="taskCategory">Category</label>
+                        <select id="taskCategory">
+                            <option value="work">Work</option>
+                            <option value="personal">Personal</option>
+                            <option value="shopping">Shopping</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="taskPriority">Priority</label>
+                        <select id="taskPriority">
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-cancel" id="cancelBtn">Cancel</button>
+                    <button type="submit" class="btn-save">Save Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

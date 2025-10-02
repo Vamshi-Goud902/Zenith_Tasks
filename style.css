@@ -1,0 +1,392 @@
+/* ---- GLOBAL STYLES & VARIABLES ---- */
+:root {
+    --bg-main: #1a1d2e;
+    --bg-sidebar: #22263b;
+    --bg-card: #2c314a;
+    --primary-accent: #3d8bff;
+    --primary-accent-hover: #5a9fff;
+    --text-primary: #e6e6e6;
+    --text-secondary: #a0a6c0;
+    --border-color: #3d4261;
+    --priority-high: #ff6b6b;
+    --priority-medium: #ffa94d;
+    --priority-low: #54c5c5;
+    --success-color: #4caf50;
+    --font-family: 'Poppins', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    overflow: hidden;
+}
+
+.app-container {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    height: 100vh;
+}
+
+/* ---- SIDEBAR STYLING ---- */
+.sidebar {
+    background-color: var(--bg-sidebar);
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    border-right: 1px solid var(--border-color);
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.2rem;
+    color: var(--primary-accent);
+}
+
+.add-task-btn {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: var(--primary-accent);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: background-color 0.2s ease;
+}
+
+.add-task-btn:hover {
+    background-color: var(--primary-accent-hover);
+}
+
+.sidebar-section h3 {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+}
+
+.filters, .categories {
+    list-style: none;
+}
+
+.filters li, .categories li {
+    padding: 0.7rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.filters li.active, .categories li.active,
+.filters li:hover, .categories li:hover {
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+}
+
+/* ---- MAIN CONTENT STYLING ---- */
+.main-content {
+    padding: 2rem 3rem;
+    overflow-y: auto;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.header-text p {
+    color: var(--text-secondary);
+}
+
+.sort-options label {
+    color: var(--text-secondary);
+    margin-right: 0.5rem;
+}
+
+.sort-options select {
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 0.5rem;
+    font-family: var(--font-family);
+}
+
+/* ---- TASK LIST STYLING ---- */
+.task-list-container {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.task-item {
+    background-color: var(--bg-card);
+    padding: 1.2rem 1.5rem;
+    border-radius: 10px;
+    border-left: 5px solid transparent;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.task-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.task-item.priority-high { border-left-color: var(--priority-high); }
+.task-item.priority-medium { border-left-color: var(--priority-medium); }
+.task-item.priority-low { border-left-color: var(--priority-low); }
+
+.task-item.completed {
+    opacity: 0.6;
+}
+
+.task-item.completed .task-title {
+    text-decoration: line-through;
+    color: var(--text-secondary);
+}
+
+.task-checkbox {
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.task-checkbox:checked {
+    background-color: var(--success-color);
+    border-color: var(--success-color);
+}
+
+.task-checkbox:checked::after {
+    content: '\f00c'; /* Font Awesome check icon */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: #fff;
+    font-size: 12px;
+    display: block;
+    text-align: center;
+    line-height: 20px;
+}
+
+.task-details {
+    flex-grow: 1;
+}
+
+.task-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.task-info {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.task-info span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.task-category-tag {
+    background-color: var(--primary-accent);
+    color: #fff;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.task-actions {
+    display: flex;
+    gap: 1rem;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.task-item:hover .task-actions {
+    opacity: 1;
+}
+
+.task-actions button {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: color 0.2s;
+}
+
+.task-actions button:hover {
+    color: var(--primary-accent);
+}
+
+/* ---- MODAL STYLING ---- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background-color: var(--bg-card);
+    padding: 2.5rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    transform: scale(0.9);
+    transition: transform 0.3s;
+}
+
+.modal-overlay.active .modal-content {
+    transform: scale(1);
+}
+
+#taskForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+#modalTitle {
+    margin-bottom: 0.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group-inline {
+    display: flex;
+    gap: 1rem;
+}
+.form-group-inline .form-group {
+    flex: 1;
+}
+
+.form-group label {
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-family: var(--font-family);
+    font-size: 1rem;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.btn-cancel, .btn-save {
+    padding: 0.7rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-cancel {
+    background-color: transparent;
+    color: var(--text-secondary);
+}
+
+.btn-cancel:hover {
+    background-color: var(--border-color);
+}
+
+.btn-save {
+    background-color: var(--primary-accent);
+    color: #fff;
+}
+
+.btn-save:hover {
+    background-color: var(--primary-accent-hover);
+}
+
+/* ---- SCROLLBAR ---- */
+.main-content::-webkit-scrollbar {
+    width: 8px;
+}
+.main-content::-webkit-scrollbar-track {
+    background: var(--bg-sidebar);
+}
+.main-content::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+.main-content::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-accent);
+}
+/* ---- LOGO STYLING ---- */
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Adjust space between logo and text if you keep text */
+    /* Remove the font-size and color if you're only using an image logo,
+       or keep it if you have text and want to style it */
+    font-size: 1.2rem; /* Keep if H1 is still present */
+    color: var(--primary-accent); /* Keep if H1 is still present */
+}
+
+.app-logo {
+    width: 40px; /* Adjust as needed for your logo size */
+    height: 40px; /* Adjust as needed */
+    object-fit: contain}
