@@ -14,6 +14,11 @@
     --success-color: #4caf50;
     --font-family: 'Poppins', sans-serif;
 }
+img, video, iframe {
+    max-width: 100%;
+    height: auto;
+}
+
 /* Instead of fixed width */
 .container {
     width: 1200px;  /* ❌ bad for mobile */
