@@ -14,6 +14,18 @@
     --success-color: #4caf50;
     --font-family: 'Poppins', sans-serif;
 }
+/* Instead of fixed width */
+.container {
+    width: 1200px;  /* ❌ bad for mobile */
+}
+
+/* Use responsive width */
+.container {
+    width: 90%;      /* ✅ adjusts to screen size */
+    max-width: 1200px; /* optional max width for large screens */
+    margin: 0 auto;
+}
+
 
 * {
     margin: 0;
